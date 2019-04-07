@@ -30,6 +30,8 @@ Included Files:
     -client.cpp
         -Using a tft display and joystick to allow the user to specifiy a maze size, and then displays the maze creation process as communicated back from the server.
         -Based off eclass simpleclient for assignment 2 part 2, and a1-2.cpp solution for assignment 1 part2
+    -circuit-wiring.txt
+        -From eclass for assignment 2, modified to include display ratio fixed button.
     -Makefile
         -From eclass, unmodified
 -README
