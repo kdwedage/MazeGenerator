@@ -15,8 +15,13 @@
 
 using namespace std;
 
+// Sends out a string message through Serial, then waits for acknowledgement response.
 void sendAndRecieve(SerialPort& Serial, string outputMessage);
+
+// Recursive helper function for the recursiveBacktring function
 void navigate(Grid *grid, stack <pair<int,int>>& locationHistory, pair<int, int> currentLocation, SerialPort& Serial);
+
+// Sets up the recursive backing algorithm
 void recursiveBacktracking(Grid *grid, SerialPort& Serial);
 
 #endif

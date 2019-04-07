@@ -6,10 +6,6 @@
   Ideas adapted from https://www.cmrr.umn.edu/~strupp/serial.html#config
 */
 
-/*
-  Obtained from eclass for Assignment 2 part 2. 
-*/
-
 #ifndef _SERIALPORT_H_
 #define _SERIALPORT_H_
 

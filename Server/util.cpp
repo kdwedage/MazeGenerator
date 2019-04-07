@@ -1,14 +1,23 @@
+/*****************************
+* Names: Kevin Wedage, Aryan Singh
+* IDs: 1532557, 1533732
+* Comput 275, Winter 2019
+* Final Project
+*****************************/
+
 #include "util.h"
 
+// Initializes the random seed using time
 void initializeSeed(){
     srand(time(NULL));
 }
 
-// Does not include max
+// Gets a random int from 0 to max, does not include max
 int randomInt(int max){
     return rand() % max;
 }
 
+// Parses string for two integers
 int * parseRequest(string& line){
     int wordCount = 0;
     string str[2];
@@ -30,7 +39,7 @@ int * parseRequest(string& line){
     return numbers;
 }
 
-
+// Grid constructor that initalizes the member variables
 Grid::Grid(int w, int h){
     width = w;
     height = h;
@@ -45,7 +54,7 @@ Grid::Grid(int w, int h){
     }
 }
 
-
+// Removes a random unvisited wall for a location in the grid
 char Grid::getRandomUnvisitedWall(pair <int, int> location){
     Cell cell = grid.at(location.second).at(location.first);
 
@@ -53,7 +62,7 @@ char Grid::getRandomUnvisitedWall(pair <int, int> location){
 
     vector <char> walls = cell.walls; 
 
-    if(walls.size() == 0){
+    if(walls.size() == 0){ // No walls
         return 'X';
     }
 
@@ -86,7 +95,7 @@ char Grid::getRandomUnvisitedWall(pair <int, int> location){
     }
 
     if(notVisitedWalls.size() == 0){
-        return 'X'; // No more walls
+        return 'X'; // No unvisited walls
     }
 
 
@@ -98,10 +107,11 @@ char Grid::getRandomUnvisitedWall(pair <int, int> location){
     return side;
 }
 
+// Removes the wall at the location in the grid
 void Grid::removeWall(pair <int, int> location, char w){
     Cell cell = grid.at(location.second).at(location.first);
     
-    // Looks for char, if found erases it from walls
+    // Looks for wall, if found erases it from walls
     for(auto iter = cell.walls.begin(); iter != cell.walls.end(); iter++){
         if(*iter == w){
             cell.walls.erase(iter);
@@ -112,6 +122,7 @@ void Grid::removeWall(pair <int, int> location, char w){
     grid.at(location.second).at(location.first) = cell;
 }
 
+// Gets the location above the current location
 pair<int,int> Grid::getTopLocation(pair <int, int> location){
     pair <int, int> newLocation;
     if(location.second <= 0){
@@ -123,6 +134,8 @@ pair<int,int> Grid::getTopLocation(pair <int, int> location){
     }
     return newLocation;
 }
+
+// Gets the location to the right of the current location
 pair<int,int> Grid::getRightLocation(pair <int, int> location){
     pair <int, int> newLocation;
     if(location.first >= (width - 1)){
@@ -134,6 +147,8 @@ pair<int,int> Grid::getRightLocation(pair <int, int> location){
     }
     return newLocation;
 }
+
+// Gets the location below the current location
 pair<int,int> Grid::getBottomLocation(pair <int, int> location){
     pair <int, int> newLocation;
     if(location.second >= (height - 1)){
@@ -145,6 +160,8 @@ pair<int,int> Grid::getBottomLocation(pair <int, int> location){
     }
     return newLocation;
 }
+
+// Gets the location to the left of the current location
 pair<int,int> Grid::getLeftLocation(pair <int, int> location){
     pair <int, int> newLocation;
     if(location.first <= 0){
@@ -157,6 +174,7 @@ pair<int,int> Grid::getLeftLocation(pair <int, int> location){
     return newLocation;
 }
 
+// Returns the wall opposite to the wall passed in.
 char Grid::wallOpposite(char w){
     switch(w){
         case 'L':

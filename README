@@ -1,0 +1,80 @@
+Final Project
+
+Names: Kevin Wedage, Aryan Singh
+IDs #: 1532557, 1533732
+CMPUT 275 Winter 2019 
+
+
+Included Files:
+
+-/server:
+    server.cpp 
+        - Handle Arduino serial request for generating a maze
+    util.h
+        - Declaration of the Cell structure, and Grid class
+        - Declaration of useful methods
+    util.cpp
+        - Implementation of Grid member methods.
+        - Implementation of useful methods.
+    recursiveBack.h
+        - Declaration of recursive backtracking algorithm related methods
+    recursiveBack.cpp
+        - Implementation of recursive backtracking alogrithms
+    serialport.cpp
+        -Simplifies serial communication.
+        -From eclass, unmodified.
+    serialport.h
+        -From eclass, unmodified.
+    Makefile
+-/client
+    -client.cpp
+        -Using a tft display and joystick to allow the user to specifiy a maze size, and then displays the maze creation process as communicated back from the server.
+        -Based off eclass simpleclient for assignment 2 part 2, and a1-2.cpp solution for assignment 1 part2
+    -Makefile
+        -From eclass, unmodified
+-README
+
+Referenced Sources:
+    -weblog.jamisbuck.org/2010/12/27/maze-generation-recursive-backtracking
+    -https://www.tutorialspoint.com/cplusplus/cpp_return_arrays_from_functions.htm
+
+
+Running Instructions:
+    
+    Navigate to server folder containing the server.cpp file.
+    To build object files, link object files run the command:
+        make
+    To just build object files:
+        make server.o
+    or
+        make recursiveBack.o
+    or
+        make util.o
+    or
+        make serialport.o
+    To remove all created files:
+        make clean
+
+    Then connect the Arduino Mega by Serial to the computer. 
+
+    Navigate to client folder, containing the client.cpp file.
+    Run the command:
+        make upload
+
+    Then on the computer, navigate to the folder containing the ./server file. Make sure the port selected is 'ttyACM0'. Otherwise when running the "./server " command append the integer port number. 
+    
+    For example, to access port ttyACM1:
+        ./server 1
+    
+    otherwise just run:
+        ./server
+
+    If required, restart the arduino. Then proceed to select dimensions of the maze you wish to create on the arduino, using the joystick and joystick button. The additional button that can be connect to digital pin 3, allows the user to fix the maze dimensions to match the screen dimensions.
+
+    To create another maze, simply click the RESET button on the arduino, and proceed like before.
+
+Assumptions:
+    That all the required files are included. The circuit is wired correctly, based on the circuit-wiring.txt file from eclass for Assignment 2. 
+
+    If the size of the maze it too large, the application may abrumptly crash with a segmentation fault. Therefore to avoid such crashes, restrict the size of the maze to be around 150 x 75 (when in fixed ratio mode).
+
